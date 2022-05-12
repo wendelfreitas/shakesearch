@@ -1,31 +1,34 @@
-# ShakeSearch
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-Welcome to the Pulley Shakesearch Take-home Challenge! In this repository,
-you'll find a simple web app that allows a user to search for a text string in
-the complete works of Shakespeare.
+## Getting Started
 
-You can see a live version of the app at
-https://pulley-shakesearch.herokuapp.com/. Try searching for "Hamlet" to display
-a set of results.
+First, run the development server:
 
-In it's current state, however, the app is in rough shape. The search is
-case sensitive, the results are difficult to read, and the search is limited to
-exact matches.
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-## Your Mission
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Improve the app! Think about the problem from the **user's perspective**
-and prioritize your changes according to what you think is most useful.
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-You can approach this with a back-end, front-end, or full-stack focus.
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-## Evaluation
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-We will be primarily evaluating based on how well the search works for users. A search result with a lot of features (i.e. multi-words and mis-spellings handled), but with results that are hard to read would not be a strong submission.
+## Learn More
 
-## Submission
+To learn more about Next.js, take a look at the following resources:
 
-1. Fork this repository and send us a link to your fork after pushing your changes.
-2. Heroku hosting - The project includes a Heroku Procfile and, in its
-   current state, can be deployed easily on Heroku's free tier.
-3. In your submission, share with us what changes you made and how you would prioritize changes if you had more time.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
