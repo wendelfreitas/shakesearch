@@ -1,4 +1,6 @@
 import type { NextPage } from 'next';
+import { Logo } from '../../components/Logo';
+import { Footer } from '../../components/Footer';
 import { SearchInput } from '../../components/SearchInput';
 import * as S from './styles';
 
@@ -6,18 +8,16 @@ const Home: NextPage = () => {
   return (
     <S.Container>
       <main>
-        <h1>Shakesearch</h1>
+        <S.Wrapper>
+          <Logo direction="vertical" />
 
-        <div>
-          <SearchInput />
-        </div>
+          <div>
+            <SearchInput />
+          </div>
+        </S.Wrapper>
       </main>
 
-      <footer>
-        <a href="https://wendel.dev" target="_blank" rel="noopener noreferrer">
-          Create with ❤️ by Wendel Freitas
-        </a>
-      </footer>
+      <Footer />
     </S.Container>
   );
 };
