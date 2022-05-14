@@ -8,8 +8,8 @@ const MOCK_INPUT_DATA = [
 ];
 
 const MOCK_RESPONSE_DATA = [
-  { id: 0, title: 'The Sonnets' },
-  { id: 1, title: 'All’s Well That Ends Well' },
+  { id: 1, index: 0, title: 'The Sonnets' },
+  { id: 2, index: 1, title: 'All’s Well That Ends Well' },
 ];
 
 describe('getTitles()', () => {

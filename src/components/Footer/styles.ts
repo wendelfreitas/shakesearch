@@ -11,6 +11,10 @@ export const Container = styled.footer`
     a {
       color: ${theme.colors.primary};
       text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   `}
 `;

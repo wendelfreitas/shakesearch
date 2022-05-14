@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   > div {
-    width: 50%;
+    width: 75rem;
     margin-top: 3.5rem;
   }
 `;
