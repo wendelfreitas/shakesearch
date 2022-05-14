@@ -1,4 +1,3 @@
-import { Search } from '@styled-icons/ionicons-outline/Search';
 import { KeyboardReturn } from '@styled-icons/material/KeyboardReturn';
 import { KeyboardEvent } from 'react';
 import { FilePaper2 } from '@styled-icons/remix-line/FilePaper2';
