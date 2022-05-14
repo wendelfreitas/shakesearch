@@ -8,7 +8,7 @@ const modifiers = {
     flex-direction: column;
 
     img {
-      width: 30%;
+      width: 25%;
       margin-bottom: 1.5rem;
     }
 
