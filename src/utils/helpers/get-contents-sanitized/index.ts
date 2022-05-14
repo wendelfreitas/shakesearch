@@ -9,7 +9,6 @@ type GetContentsSanitizedProps = {
  * Return the complete works string sanitized and in array.
  */
 export const getContentsSanitized = ({ data }: GetContentsSanitizedProps) => {
-  console.log(data);
   const sanitized = data
     .split(/\r?\n/)
     .map((line) => line.trim())
