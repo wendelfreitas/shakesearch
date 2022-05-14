@@ -1,8 +1,4 @@
 export default {
-  grid: {
-    container: '130rem',
-    gutter: '3.2rem',
-  },
   border: {
     radius: {
       medium: '0.4rem',
@@ -12,7 +8,9 @@ export default {
   colors: {
     primary: '#27282f',
     secondary: '#f2f2f3',
+    tertiary: '#e5e4e6',
     white: '#ffffff',
+    evidence: '#95959d',
   },
   font: {
     family:
@@ -20,8 +18,6 @@ export default {
     light: 300,
     normal: 400,
     semiBold: 600,
-    bold: 700,
-    extraBold: 800,
     sizes: {
       xxsmall: '1rem',
       xsmall: '1.2rem',
@@ -32,15 +28,5 @@ export default {
       xxlarge: '2.4rem',
       huge: '3.2rem',
     },
-  },
-  spacings: {
-    xxsmall: '0.8rem',
-    xsmall: '1.6rem',
-    small: '2rem',
-    medium: '3.2rem',
-    large: '4.0rem',
-    xlarge: '4.8rem',
-    xxlarge: '5.6rem',
-    huge: '10.5rem',
   },
 } as const;

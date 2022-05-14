@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Shimmer } from '../../styles/effects/shimmer';
 
 export const Container = styled.div`
   width: 100%;
@@ -9,7 +10,7 @@ export const Container = styled.div`
     color: ${theme.colors.primary};
 
     hr {
-      border: 0.05rem solid #cccccc;
+      border: 0.05rem solid ${theme.colors.tertiary};
     }
   `}
 
@@ -20,15 +21,20 @@ export const InputContainer = styled.div`
   height: 5rem;
   display: flex;
   align-items: center;
-  padding: 3.5rem 3rem;
-  justify-content: center;
+  padding: 3.5rem 2.5rem;
+  justify-content: space-between;
+  flex-direction: row;
+
+  > div {
+    display: flex;
+    width: 100%;
+  }
   input {
     background: none;
     width: 100%;
-    height: 2.5rem;
+    height: 3rem;
     border: none;
     outline: none;
-    margin-right: 1rem;
 
     ${({ theme }) => css`
       font-size: ${theme.font.sizes.large};
@@ -46,7 +52,7 @@ export const InputContainer = styled.div`
 `;
 
 export const ControlsContainer = styled.div`
-  padding: 2rem 3rem;
+  padding: 2rem 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -67,13 +73,43 @@ export const Control = styled.div`
 `;
 
 export const ResultsContainer = styled.div`
-  padding: 2rem 3rem;
+  padding: 2rem 1.5rem;
+  max-height: 30rem;
+  overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    width: 1px;
+  }
 
   ${({ theme }) => css`
-    p {
-      color: #95959d;
+    ::-webkit-scrollbar-thumb {
+      background: ${theme.colors.primary};
+      border-radius: 10px;
+    }
+  `}
+`;
+
+export const ItemGroup = styled.ul`
+  ${({ theme }) => css`
+    > p {
+      color: ${theme.colors.evidence};
+      margin-left: 1.5rem;
       font-size: ${theme.font.sizes.medium};
       font-weight: 400;
+    }
+  `}
+`;
+
+export const NotFound = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  ${({ theme }) => css`
+    font-size: ${theme.font.sizes.xsmall};
+
+    i {
+      font-size: ${theme.font.sizes.medium};
     }
   `}
 `;
