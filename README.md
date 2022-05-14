@@ -1,34 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">
+  <br>
+  <img src="https://i.imgur.com/weGyiLq.png" alt="Shakesearch" height="200" width="200">
+  <br><br>
+  Shakesearch
+</h1>
 
-## Getting Started
+<p align="center">A minimal, clean and beautiful website to help Shakespeare fans to find your beautiful works.</p>
 
-First, run the development server:
+<p align="center"><i>"Find, or not find, that is the question." - ?</i> </p>
+
+<p align="center">
+  <a href="http://makeapullrequest.com">
+    <img src="https://img.shields.io/badge/contribuition-welcome-brightgreen.svg" alt="PRs Welcome">
+  </a>
+  <a href="https://saythanks.io/to/wendelfreitas">
+      <img src="https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg">
+  </a>
+<a href="https://www.repostatus.org/#wip"><img src="https://www.repostatus.org/badges/latest/wip.svg" alt="Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public." /></a>
+</p>
+
+<h2>How to Run?</h2>
+
+You don't need env vars because all the data is in the project already.
+
+So just follow the steps below
 
 ```bash
-npm run dev
-# or
-yarn dev
+# Install Dependencies
+$ yarn install or yarn
+
+# Run Application (Go to http://localhost:3000/ to see the result)
+$ yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<h2>Want to see code quality and lint warnings?</h2>
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```bash
+# Install Dependencies if you dont did this already
+$ yarn install or yarn
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+# Run linters using package script
+$ yarn lint
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+# You will get this
+✔ No ESLint warnings or errors
+✨  Done in 3.97s.
+```
 
-## Learn More
+<h2>You want to check the code coverage?</h2>
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Install Dependencies if you dont did this already
+$ yarn install or yarn
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Run Jest using package script
+$ yarn test
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## :handshake: **Contributing**
 
-## Deploy on Vercel
+This project is just for Pulley company challenge purposes.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+But you can do this:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- ⭐️ Star the project
+- 🐛 Find and report issues
+- 📥 Submit PRs to help solve issues or add features
+
+<br>
+<p align="center">Created with ❤︎ by Wendel Freitas </p>
