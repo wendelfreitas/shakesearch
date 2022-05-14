@@ -15,6 +15,24 @@ function MyApp({ Component, pageProps }: AppProps) {
           content="Find anything about Shakespeare, including phrases, quotes, characters and sonettes."
         />
         <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="stylesheet preload prefetch"
+          href="/fonts/poppins-v12-latin-300.woff2"
+          as="style"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="stylesheet preload prefetch"
+          href="/fonts/poppins-v12-latin-600.woff2"
+          as="style"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="stylesheet preload prefetch"
+          href="/fonts/poppins-v12-latin-regular.woff2"
+          as="style"
+          crossOrigin="anonymous"
+        />
       </Head>
       <GlobalStyles />
       <Component {...pageProps} />
