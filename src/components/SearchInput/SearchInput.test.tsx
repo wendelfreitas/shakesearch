@@ -6,7 +6,7 @@ describe('<SearchInput />', () => {
   it('renders component successfully', () => {
     renderWithTheme(<SearchInput />);
     const placeholder = screen.getByPlaceholderText(
-      'Search for sonetts, characters, quotes and more...'
+      'Search for sonnets, characters, titles and more...'
     );
 
     expect(placeholder).toBeInTheDocument();

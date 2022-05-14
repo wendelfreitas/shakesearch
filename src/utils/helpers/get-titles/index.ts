@@ -6,14 +6,16 @@ type GetTitlesProps = {
 };
 
 export const getTitles = ({ lines }: GetTitlesProps) => {
-  const titles = [...lines]
-    .splice(lines.indexOf('Contents') + 1, lines.lastIndexOf('THE SONNETS'))
-    .map((title) =>
-      title
+  const titles = lines
+    .splice(lines.indexOf('Contents') + 1, lines.lastIndexOf('THE SONNETS') - 1)
+    .map((title, index) => ({
+      id: index,
+      title: title
         .toLowerCase()
         .split(' ')
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ')
-    );
+        .join(' '),
+    }));
+
   return titles;
 };
