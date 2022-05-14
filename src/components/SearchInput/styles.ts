@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { Shimmer } from '../../styles/effects/shimmer';
 
 export const Container = styled.div`
   width: 100%;
