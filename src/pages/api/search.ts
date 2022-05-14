@@ -1,9 +1,8 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getContentsSanitized } from 'utils/helpers/get-contents-sanitized';
 import { getTitles } from 'utils/helpers/get-titles';
 import { getSonnets } from 'utils/helpers/get-sonnets';
-import { Document, DocumentOptions } from 'flexsearch';
+import { Document } from 'flexsearch';
 import path from 'path';
 import fs from 'fs';
 
@@ -61,7 +60,7 @@ const searchSonnets = ({
     document.add(sonnets);
   });
 
-  const results = document.search(String(term), 100);
+  const results = document.search(String(term), 200);
 
   if (results.length) {
     return sonnets.filter((_, index) => results[0].result.includes(index));
@@ -74,6 +73,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const {
     query: { term },
   } = req;
+
   try {
     fs.readFile(
       path.resolve(__dirname, '../../../../completeworks.txt'),
@@ -86,42 +86,31 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         const document = new Document({
           tokenize: 'forward',
           document: {
-            id: 'id',
+            id: 'index',
             index: ['type', 'title'],
           },
         });
 
-        // console.log();
         const getTitlesBySearch = searchTitles({
           document,
           titles,
           term: String(term),
         });
+
         const getSonnetsBySearch = searchSonnets({
           document,
           sonnets,
           term: String(term),
         });
 
-        return res.status(200).json(
-          // titles.filter((_, index) => results[0].result.includes(index))
-          // [
-          //   'titles',
-          //   ...searchSonnets({ sonnets, term: String(term) }),
-          // ]
-          {
-            titles: getTitlesBySearch,
-            sonnets: getSonnetsBySearch,
-            results: getTitlesBySearch.length + getSonnetsBySearch.length,
-          }
-        );
+        return res.status(200).json({
+          titles: getTitlesBySearch,
+          sonnets: getSonnetsBySearch,
+          results: getTitlesBySearch.length + getSonnetsBySearch.length,
+        });
       }
     );
-
-    // console.log(data);
   } catch (err) {
-    console.error(err);
-
     res.status(400).json({ error: 'Something went wrong' });
   }
 }

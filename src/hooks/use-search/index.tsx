@@ -23,16 +23,9 @@ type UseSearchResponse = {
 
 export const useSearch = (): UseSearchResponse => {
   const [isLoading, setIsLoading] = useState(false);
-  const { get, data } = useFetch('http://localhost:3000', {
+  const { get, data } = useFetch('', {
     cache: 'no-cache',
   });
-
-  const search = (query: string) => {
-    if (query.length >= 3) {
-      setIsLoading(true);
-      handleSearch(query);
-    }
-  };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleSearch = useCallback(
@@ -43,6 +36,13 @@ export const useSearch = (): UseSearchResponse => {
     }, 600),
     []
   );
+
+  const search = (query: string) => {
+    if (query.length >= 3) {
+      setIsLoading(true);
+      handleSearch(query);
+    }
+  };
 
   return {
     isLoading,

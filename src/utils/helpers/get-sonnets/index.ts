@@ -23,6 +23,7 @@ export const getSonnets = ({ lines }: GetSonnets) => {
     const start = hasNext
       ? Number(position)
       : Number(positions[positions.length - 1]);
+
     const end = hasNext ? Number(positions[index + 1]) : getLastPhraseIndex + 1;
 
     return lines
@@ -33,6 +34,7 @@ export const getSonnets = ({ lines }: GetSonnets) => {
 
   return sonnets.map((sonnet, index) => ({
     id: index + 1,
+    index,
     title: String(sonnet[0]).trim().replace(',', '.'),
     content: sonnet.join('\n'),
   }));

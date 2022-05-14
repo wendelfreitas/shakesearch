@@ -25,6 +25,7 @@ const MOCK_INPUT_DATA = [
 const MOCK_RESPONSE_DATA = [
   {
     id: 1,
+    index: 0,
     title: 'From fairest creatures we desire increase.',
     content:
       'From fairest creatures we desire increase,\n' +
@@ -44,6 +45,8 @@ const MOCK_RESPONSE_DATA = [
   },
   {
     id: 2,
+    index: 1,
+
     title: 'Love’s fire heats water. water cools not love.',
     content: 'Love’s fire heats water, water cools not love.',
   },

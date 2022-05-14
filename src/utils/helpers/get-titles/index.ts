@@ -9,7 +9,8 @@ export const getTitles = ({ lines }: GetTitlesProps) => {
   const titles = lines
     .splice(lines.indexOf('Contents') + 1, lines.lastIndexOf('THE SONNETS') - 1)
     .map((title, index) => ({
-      id: index,
+      id: index + 1,
+      index,
       title: title
         .toLowerCase()
         .split(' ')
