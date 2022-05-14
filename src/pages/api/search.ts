@@ -3,8 +3,10 @@ import { getContentsSanitized } from 'utils/helpers/get-contents-sanitized';
 import { getTitles } from 'utils/helpers/get-titles';
 import { getSonnets } from 'utils/helpers/get-sonnets';
 import { Document } from 'flexsearch';
-import path from 'path';
 import fs from 'fs';
+import path from 'path';
+import getConfig from 'next/config';
+const { serverRuntimeConfig } = getConfig();
 
 type SearchTitlesProps = {
   document: Document<unknown, false>;
@@ -76,7 +78,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   try {
     fs.readFile(
-      path.resolve(__dirname, '../../../../completeworks.txt'),
+      path.join(serverRuntimeConfig.PROJECT_ROOT, './completeworks.txt'),
       'utf8',
       (err, data) => {
         const lines = getContentsSanitized({ data });
