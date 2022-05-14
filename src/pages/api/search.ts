@@ -3,10 +3,7 @@ import { getContentsSanitized } from 'utils/helpers/get-contents-sanitized';
 import { getTitles } from 'utils/helpers/get-titles';
 import { getSonnets } from 'utils/helpers/get-sonnets';
 import { Document } from 'flexsearch';
-import fs from 'fs';
-import path from 'path';
-import getConfig from 'next/config';
-const { serverRuntimeConfig } = getConfig();
+import data from 'utils/database';
 
 type SearchTitlesProps = {
   document: Document<unknown, false>;
@@ -77,41 +74,35 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   } = req;
 
   try {
-    fs.readFile(
-      path.join(serverRuntimeConfig.PROJECT_ROOT, './completeworks.txt'),
-      'utf8',
-      (err, data) => {
-        const lines = getContentsSanitized({ data });
-        const titles = getTitles({ lines });
-        const sonnets = getSonnets({ lines });
+    const lines = getContentsSanitized({ data });
+    const titles = getTitles({ lines });
+    const sonnets = getSonnets({ lines });
 
-        const document = new Document({
-          tokenize: 'forward',
-          document: {
-            id: 'index',
-            index: ['type', 'title'],
-          },
-        });
+    const document = new Document({
+      tokenize: 'forward',
+      document: {
+        id: 'index',
+        index: ['type', 'title'],
+      },
+    });
 
-        const getTitlesBySearch = searchTitles({
-          document,
-          titles,
-          term: String(term),
-        });
+    const getTitlesBySearch = searchTitles({
+      document,
+      titles,
+      term: String(term),
+    });
 
-        const getSonnetsBySearch = searchSonnets({
-          document,
-          sonnets,
-          term: String(term),
-        });
+    const getSonnetsBySearch = searchSonnets({
+      document,
+      sonnets,
+      term: String(term),
+    });
 
-        return res.status(200).json({
-          titles: getTitlesBySearch,
-          sonnets: getSonnetsBySearch,
-          results: getTitlesBySearch.length + getSonnetsBySearch.length,
-        });
-      }
-    );
+    return res.status(200).json({
+      titles: getTitlesBySearch,
+      sonnets: getSonnetsBySearch,
+      results: getTitlesBySearch.length + getSonnetsBySearch.length,
+    });
   } catch (err) {
     res.status(400).json({ error: 'Something went wrong' });
   }
