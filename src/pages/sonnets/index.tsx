@@ -11,20 +11,29 @@ export type SonnetsPageProps = {
     title: string;
     content: string;
   }>;
+  pagination: {
+    total: number;
+    current: number;
+  };
 };
 
-const SonnetsPage = ({ sonnets }: SonnetsPageProps) => {
-  return <Sonnets sonnets={sonnets} />;
+const SonnetsPage = ({ sonnets, pagination }: SonnetsPageProps) => {
+  return <Sonnets sonnets={sonnets} pagination={pagination} />;
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const page = Number(query.page || 1);
   try {
     const lines = getContentsSanitized({ data });
     const sonnets = getSonnets({ lines: lines.filter(Boolean) });
 
     return {
       props: {
-        sonnets: paginate(sonnets, 10, Number(query.page || 1)),
+        sonnets: paginate(sonnets, 10, page),
+        pagination: {
+          current: page,
+          total: Math.ceil(sonnets.length / 10),
+        },
       },
     };
   } catch (error) {

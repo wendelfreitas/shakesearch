@@ -31,4 +31,12 @@ const sonnets = [
   },
 ];
 
-export const Default: Story = () => <Sonnets sonnets={sonnets} />;
+export const Default: Story = () => (
+  <Sonnets
+    sonnets={sonnets}
+    pagination={{
+      current: 1,
+      total: 2,
+    }}
+  />
+);
