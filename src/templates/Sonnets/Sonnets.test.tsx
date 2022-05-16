@@ -1,6 +1,12 @@
 import { screen } from '@testing-library/react';
 import Sonnets from '.';
 import { renderWithTheme } from 'utils/tests/helper';
+import { useRouter } from 'next/router';
+import userEvent from '@testing-library/user-event';
+
+jest.mock('next/router', () => ({
+  useRouter: jest.fn(),
+}));
 
 const sonnets = [
   {
@@ -27,25 +33,141 @@ const sonnets = [
 
 describe('<Sonnets />', () => {
   it('renders component successfully', () => {
-    renderWithTheme(<Sonnets sonnets={sonnets} />);
+    renderWithTheme(
+      <Sonnets
+        sonnets={sonnets}
+        pagination={{
+          current: 1,
+          total: 2,
+        }}
+      />
+    );
     const title = screen.getByText('Shakesearch');
 
     expect(title).toBeInTheDocument();
   });
 
   it('should render work title', () => {
-    renderWithTheme(<Sonnets sonnets={sonnets} />);
+    renderWithTheme(
+      <Sonnets
+        sonnets={sonnets}
+        pagination={{
+          current: 1,
+          total: 2,
+        }}
+      />
+    );
     const title = screen.getByText('Sonnet #1');
 
     expect(title).toBeInTheDocument();
   });
 
   it('should render work content', () => {
-    renderWithTheme(<Sonnets sonnets={sonnets} />);
+    renderWithTheme(
+      <Sonnets
+        sonnets={sonnets}
+        pagination={{
+          current: 1,
+          total: 2,
+        }}
+      />
+    );
     const content = screen.getByText(
       'From fairest creatures we desire increase.'
     );
 
     expect(content).toBeInTheDocument();
+  });
+
+  it('should call router.back function', () => {
+    const back = jest.fn();
+
+    (useRouter as jest.Mock).mockImplementation(() => ({
+      back,
+    }));
+
+    renderWithTheme(
+      <Sonnets
+        sonnets={sonnets}
+        pagination={{
+          current: 1,
+          total: 2,
+        }}
+      />
+    );
+    const title = screen.getByText('Back');
+
+    userEvent.click(title);
+
+    expect(back).toBeCalled();
+  });
+
+  it('should call next sonnets page when click in next button', () => {
+    const push = jest.fn();
+
+    (useRouter as jest.Mock).mockImplementation(() => ({
+      push,
+    }));
+
+    renderWithTheme(
+      <Sonnets
+        sonnets={sonnets}
+        pagination={{
+          current: 1,
+          total: 2,
+        }}
+      />
+    );
+    const next = screen.getByText('Next >');
+
+    userEvent.click(next);
+
+    expect(push).toHaveBeenCalledWith('/sonnets?page=2');
+  });
+
+  it('should call previous sonnets page when click in previous button', () => {
+    const push = jest.fn();
+
+    (useRouter as jest.Mock).mockImplementation(() => ({
+      push,
+    }));
+
+    renderWithTheme(
+      <Sonnets
+        sonnets={sonnets}
+        pagination={{
+          current: 2,
+          total: 2,
+        }}
+      />
+    );
+    const previous = screen.getByText('< Previous');
+
+    userEvent.click(previous);
+
+    expect(push).toHaveBeenCalledWith('/sonnets?page=1');
+  });
+
+  it('should call sonnet specific page when click in some sonnet title', () => {
+    const push = jest.fn();
+
+    (useRouter as jest.Mock).mockImplementation(() => ({
+      push,
+    }));
+
+    renderWithTheme(
+      <Sonnets
+        sonnets={sonnets}
+        pagination={{
+          current: 2,
+          total: 2,
+        }}
+      />
+    );
+    const previous = screen.getByText('Sonnet #1');
+
+    userEvent.click(previous);
+
+    expect(push).toHaveBeenCalledWith('/sonnets/1');
   });
 });

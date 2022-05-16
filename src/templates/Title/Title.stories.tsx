@@ -14,4 +14,12 @@ const work = {
   content: `LOREM IPSUM DOLOR`,
 };
 
-export const Default: Story = () => <Title work={work} />;
+export const Default: Story = () => (
+  <Title
+    work={work}
+    pagination={{
+      current: 1,
+      total: 1,
+    }}
+  />
+);

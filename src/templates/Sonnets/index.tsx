@@ -3,8 +3,9 @@ import { SonnetsPageProps } from 'pages/sonnets';
 import { useRouter } from 'next/router';
 import { ResultItem } from '../../components/ResultItem';
 import Layout from '../../templates/Layout';
+import { Pagination } from '../../components/Pagination';
 
-const Sonnets = ({ sonnets }: SonnetsPageProps) => {
+const Sonnets = ({ sonnets, pagination }: SonnetsPageProps) => {
   const router = useRouter();
   return (
     <Layout logoDirection="horizontal">
@@ -26,6 +27,17 @@ const Sonnets = ({ sonnets }: SonnetsPageProps) => {
             />
           ))}
         </ul>
+        <br />
+        <Pagination
+          current={pagination.current}
+          total={pagination.total}
+          onPreviousPage={() =>
+            router.push(`/sonnets?page=${pagination.current - 1}`)
+          }
+          onNextPage={() =>
+            router.push(`/sonnets?page=${pagination.current + 1}`)
+          }
+        />
       </div>
     </Layout>
   );

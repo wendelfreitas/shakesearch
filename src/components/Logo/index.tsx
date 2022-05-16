@@ -2,9 +2,15 @@ import { useRouter } from 'next/router';
 import * as S from './styles';
 
 export type LogoProps = {
+  /**
+   * The direction of Logo and project's name.
+   */
   direction?: 'vertical' | 'horizontal';
 };
 
+/**
+ * The logo component contains image and title from the project.
+ */
 export const Logo = ({ direction = 'vertical' }: LogoProps) => {
   const router = useRouter();
   const styles = {

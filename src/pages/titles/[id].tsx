@@ -16,10 +16,14 @@ export type TitlePageProps = {
     title: string;
     content: string;
   };
+  pagination: {
+    current: number;
+    total: number;
+  };
 };
 
-const TitlePage = ({ work }: TitlePageProps) => {
-  return <Title work={work} />;
+const TitlePage = ({ work, pagination }: TitlePageProps) => {
+  return <Title work={work} pagination={pagination} />;
 };
 
 export const getServerSideProps: GetServerSideProps<
@@ -27,6 +31,7 @@ export const getServerSideProps: GetServerSideProps<
   TitleQueryParams
 > = async ({ params, query }) => {
   const { id } = params!;
+  const page = Number(query.page || 1);
 
   if (!id) {
     return {
@@ -73,9 +78,11 @@ export const getServerSideProps: GetServerSideProps<
       props: {
         work: {
           ...work,
-          content: paginate(work?.content, 50, Number(query.page || 1)).join(
-            '\n'
-          ),
+          content: paginate(work?.content, 50, page).join('\n'),
+        },
+        pagination: {
+          current: page,
+          total: Math.ceil(work?.content.length / 50),
         },
       },
     };

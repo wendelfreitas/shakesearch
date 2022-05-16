@@ -1,6 +1,12 @@
 import { screen } from '@testing-library/react';
 import Sonnet from '.';
+import { useRouter } from 'next/router';
 import { renderWithTheme } from 'utils/tests/helper';
+import userEvent from '@testing-library/user-event';
+
+jest.mock('next/router', () => ({
+  useRouter: jest.fn(),
+}));
 
 const sonnet = {
   id: 1,
@@ -38,5 +44,20 @@ describe('<Sonnet />', () => {
     );
 
     expect(title).toBeInTheDocument();
+  });
+
+  it('should call router.back function', () => {
+    const back = jest.fn();
+
+    (useRouter as jest.Mock).mockImplementation(() => ({
+      back,
+    }));
+
+    renderWithTheme(<Sonnet sonnet={sonnet} />);
+    const title = screen.getByText('Back');
+
+    userEvent.click(title);
+
+    expect(back).toBeCalled();
   });
 });
