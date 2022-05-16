@@ -43,22 +43,30 @@ export const SearchInput = () => {
         <div>
           <Search size={30} />
           <input
+            name="query"
+            data-testid="input"
             value={value}
             placeholder="Search for sonnets, characters, titles and more..."
             onChange={handleSearchOnChange}
           />
         </div>
-        {!isSearchEmpty && <Close size={25} onClick={() => setValue('')} />}
+        {!isSearchEmpty && (
+          <Close
+            size={25}
+            data-testid="close-icon"
+            onClick={() => setValue('')}
+          />
+        )}
       </S.InputContainer>
       <hr />
 
       {!isSearchEmpty && isLoading && (
-        <S.ResultsContainer>
+        <S.ResultsContainer data-testid="loading-wrapper">
           <IsLoading />
         </S.ResultsContainer>
       )}
 
-      {!isSearchEmpty && !isLoading && data.results > 0 && (
+      {!isSearchEmpty && !isLoading && data && data.results > 0 && (
         <S.ResultsContainer>
           {!!data.titles.length && (
             <S.ItemGroup>
@@ -95,7 +103,7 @@ export const SearchInput = () => {
         </S.ResultsContainer>
       )}
 
-      {!isSearchEmpty && !isLoading && data.results === 0 && (
+      {!isSearchEmpty && !isLoading && data && data.results === 0 && (
         <S.ResultsContainer>
           <S.NotFound>
             <i>Find, or not find, that is the question.</i>

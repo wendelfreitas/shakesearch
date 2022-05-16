@@ -31,7 +31,6 @@ export const useSearch = (): UseSearchResponse => {
   const handleSearch = useCallback(
     debounce(async (query) => {
       await get(`api/search?term=${query}`);
-
       setIsLoading(false);
     }, 600),
     []

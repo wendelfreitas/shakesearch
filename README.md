@@ -31,6 +31,7 @@ $ yarn install or yarn
 
 # Run Application (Go to http://localhost:3000/ to see the result)
 $ yarn dev
+
 ```
 
 <h2>Want to see code quality and lint warnings?</h2>
@@ -55,6 +56,76 @@ $ yarn install or yarn
 
 # Run Jest using package script
 $ yarn test
+
+# You probably will get this
+
+--------------------------------------|---------|----------|---------|---------|-------------------
+File                                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Lines
+--------------------------------------|---------|----------|---------|---------|-------------------
+All files                             |   96.46 |     80.3 |   91.46 |   96.41 |
+ components/Footer                    |     100 |      100 |     100 |     100 |
+  index.tsx                           |     100 |      100 |     100 |     100 |
+  styles.ts                           |     100 |      100 |     100 |     100 |
+ components/Logo                      |     100 |      100 |     100 |     100 |
+  index.tsx                           |     100 |      100 |     100 |     100 |
+  styles.ts                           |     100 |      100 |     100 |     100 |
+ components/Pagination                |     100 |      100 |     100 |     100 |
+  index.tsx                           |     100 |      100 |     100 |     100 |
+  styles.ts                           |     100 |      100 |     100 |     100 |
+ components/ResultItem                |     100 |      100 |     100 |     100 |
+  index.tsx                           |     100 |      100 |     100 |     100 |
+  styles.ts                           |     100 |      100 |     100 |     100 |
+ components/SearchInput               |   78.78 |       48 |   56.25 |   78.78 |
+  index.tsx                           |   73.68 |       48 |   44.44 |   73.68 | 57-98
+  styles.ts                           |   85.71 |      100 |   71.42 |   85.71 | 100,115
+ hooks/use-key-down                   |     100 |      100 |     100 |     100 |
+  index.tsx                           |     100 |      100 |     100 |     100 |
+ hooks/use-search                     |     100 |      100 |     100 |     100 |
+  index.tsx                           |     100 |      100 |     100 |     100 |
+ pages                                |     100 |      100 |     100 |     100 |
+  404.tsx                             |     100 |      100 |     100 |     100 |
+  index.tsx                           |     100 |      100 |     100 |     100 |
+ pages/sonnets                        |     100 |      100 |     100 |     100 |
+  [id].tsx                            |     100 |      100 |     100 |     100 |
+  index.tsx                           |     100 |      100 |     100 |     100 |
+ pages/titles                         |     100 |      100 |     100 |     100 |
+  [id].tsx                            |     100 |      100 |     100 |     100 |
+ templates/404                        |     100 |      100 |     100 |     100 |
+  index.tsx                           |     100 |      100 |     100 |     100 |
+  styles.ts                           |     100 |      100 |     100 |     100 |
+ templates/Home                       |     100 |      100 |     100 |     100 |
+  index.tsx                           |     100 |      100 |     100 |     100 |
+ templates/Layout                     |     100 |      100 |     100 |     100 |
+  index.tsx                           |     100 |      100 |     100 |     100 |
+  styles.ts                           |     100 |      100 |     100 |     100 |
+ templates/Sonnet                     |     100 |      100 |     100 |     100 |
+  index.tsx                           |     100 |      100 |     100 |     100 |
+  styles.ts                           |     100 |      100 |     100 |     100 |
+ templates/Sonnets                    |     100 |      100 |     100 |     100 |
+  index.tsx                           |     100 |      100 |     100 |     100 |
+ templates/Title                      |     100 |      100 |     100 |     100 |
+  index.tsx                           |     100 |      100 |     100 |     100 |
+ utils                                |     100 |      100 |     100 |     100 |
+  constants.ts                        |     100 |      100 |     100 |     100 |
+  database.ts                         |       0 |        0 |       0 |       0 |
+ utils/helpers/get-contents-sanitized |     100 |      100 |     100 |     100 |
+  index.ts                            |     100 |      100 |     100 |     100 |
+ utils/helpers/get-sonnets            |     100 |      100 |     100 |     100 |
+  index.ts                            |     100 |      100 |     100 |     100 |
+ utils/helpers/get-titles             |     100 |      100 |     100 |     100 |
+  index.ts                            |     100 |      100 |     100 |     100 |
+ utils/helpers/paginate               |     100 |      100 |     100 |     100 |
+  index.ts                            |     100 |      100 |     100 |     100 |
+ utils/tests                          |     100 |      100 |     100 |     100 |
+  helper.tsx                          |     100 |      100 |     100 |     100 |
+--------------------------------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 21 passed, 21 total
+Tests:       64 passed, 64 total
+Snapshots:   0 total
+Time:        3.512 s
+Ran all test suites.
+✨  Done in 5.15s.
 ```
 
 ## :handshake: **Contributing**
