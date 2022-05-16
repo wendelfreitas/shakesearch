@@ -6,6 +6,7 @@ module.exports = {
     'src/**/*.ts(x)?',
     '!src/**/stories.tsx',
     '!src/pages/_app.tsx',
+    '!src/pages/api/**',
     '!src/pages/_document.tsx',
     '!src/styles/**/*.ts',
     '!src/types/**/*.d.ts',
