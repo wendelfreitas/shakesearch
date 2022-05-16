@@ -6,9 +6,11 @@ import { ResultItem, ResultItemLoading } from '../../components/ResultItem';
 import { useKeyDown } from '../../hooks/use-key-down';
 import { useSearch } from '../../hooks/use-search';
 import * as S from './styles';
+import { useRouter } from 'next/router';
 
 export const SearchInput = () => {
   const { isLoading, search, data } = useSearch();
+  const router = useRouter();
 
   const [value, setValue] = useState('');
   const isSearchEmpty = value.length < 3;
@@ -65,7 +67,13 @@ export const SearchInput = () => {
                 <ResultItem
                   key={index}
                   {...item}
-                  onClick={() => alert(item.title)}
+                  onClick={() =>
+                    router.push(
+                      item.title === 'The Sonnets'
+                        ? '/sonnets'
+                        : `/titles/${item.id}`
+                    )
+                  }
                 />
               ))}
             </S.ItemGroup>
@@ -74,12 +82,12 @@ export const SearchInput = () => {
           {!!data.sonnets.length && (
             <S.ItemGroup>
               <p>Sonnets</p>
-              {data.sonnets.map((item, index) => (
+              {data.sonnets.map((sonnet, index) => (
                 <ResultItem
-                  {...item}
+                  {...sonnet}
                   key={index}
-                  subtitle={`${item.content.substring(0, 70)} ...`}
-                  onClick={() => alert(item.title)}
+                  subtitle={`${sonnet.content.substring(0, 70)} ...`}
+                  onClick={() => router.push(`/sonnets/${sonnet.id}`)}
                 />
               ))}
             </S.ItemGroup>

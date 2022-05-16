@@ -15,9 +15,9 @@ export const Default: Story = () => (
       justifyContent: 'center',
     }}
   >
-    <div style={{ padding: '3rem', maxWidth: '70%' }}>
+    <ul style={{ padding: '3rem', maxWidth: '70%' }}>
       <ResultItem title="Sonneto 1" type="sonnets" />
-    </div>
+    </ul>
   </div>
 );
 

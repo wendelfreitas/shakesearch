@@ -6,6 +6,7 @@ export const Container = styled.footer`
   justify-content: flex-end;
   flex-direction: column;
   margin-top: 1rem;
+  padding: 1rem;
 
   ${({ theme }) => css`
     a {

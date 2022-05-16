@@ -75,8 +75,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   try {
     const lines = getContentsSanitized({ data });
-    const titles = getTitles({ lines });
-    const sonnets = getSonnets({ lines });
+    const titles = getTitles({ lines: lines.filter(Boolean) });
+    const sonnets = getSonnets({ lines: lines.filter(Boolean) });
 
     const document = new Document({
       tokenize: 'forward',
