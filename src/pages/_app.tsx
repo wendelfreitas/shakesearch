@@ -11,9 +11,34 @@ function MyApp({ Component, pageProps }: AppProps) {
     <ThemeProvider theme={theme}>
       <Head>
         <title>Shakesearch</title>
+        <meta name="title" content="Shakesearch" />
         <meta
           name="description"
-          content="Find anything about Shakespeare, including phrases, quotes, characters and sonettes."
+          content="A minimal, clean and beautiful website to help Shakespeare fans to find your beautiful works."
+        />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://metatags.io/" />
+        <meta property="og:title" content="Shakesearch" />
+        <meta
+          property="og:description"
+          content="A minimal, clean and beautiful website to help Shakespeare fans to find your beautiful works."
+        />
+        <meta
+          property="og:image"
+          content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png"
+        />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://metatags.io/" />
+        <meta property="twitter:title" content="Shakesearch" />
+        <meta
+          property="twitter:description"
+          content="A minimal, clean and beautiful website to help Shakespeare fans to find your beautiful works."
+        />
+        <meta
+          property="twitter:image"
+          content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png"
         />
         <link rel="icon" href="/favicon.ico" />
         <link
