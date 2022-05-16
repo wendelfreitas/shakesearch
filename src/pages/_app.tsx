@@ -18,19 +18,19 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
 
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://metatags.io/" />
+        <meta property="og:url" content="https://shakesearch.vercel.app/" />
         <meta property="og:title" content="Shakesearch" />
         <meta
           property="og:description"
           content="A minimal, clean and beautiful website to help Shakespeare fans to find your beautiful works."
         />
-        <meta
-          property="og:image"
-          content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png"
-        />
+        <meta property="og:image" content="https://i.imgur.com/vNg2OmF.jpeg" />
 
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://metatags.io/" />
+        <meta
+          property="twitter:url"
+          content="https://shakesearch.vercel.app/"
+        />
         <meta property="twitter:title" content="Shakesearch" />
         <meta
           property="twitter:description"
@@ -38,7 +38,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
         <meta
           property="twitter:image"
-          content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png"
+          content="https://i.imgur.com/vNg2OmF.jpeg"
         />
         <link rel="icon" href="/favicon.ico" />
         <link
