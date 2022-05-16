@@ -2,7 +2,7 @@ import type { GetServerSideProps } from 'next';
 import Title from 'templates/Title';
 import data from 'utils/database';
 import { getContentsSanitized } from 'utils/helpers/get-contents-sanitized';
-import { getTitles } from 'utils/helpers/get-titles';
+import { getWorks } from 'utils/helpers/get-works';
 import { paginate } from 'utils/helpers/paginate';
 
 export type TitlePageProps = {
@@ -34,32 +34,7 @@ export const getServerSideProps: GetServerSideProps<{
   }
 
   const lines = getContentsSanitized({ data });
-  const titles = getTitles({ lines: lines.filter(Boolean) });
-
-  const getTitlesInUpperCase = [...titles].map((line) => {
-    const name =
-      line.title.toUpperCase() === 'THE TRAGEDY OF ANTONY AND CLEOPATRA'
-        ? 'ANTONY AND CLEOPATRA'
-        : line.title.toUpperCase();
-
-    return name;
-  });
-  const copy = [...lines];
-  const works = copy.slice(copy.indexOf('1') - 2);
-
-  const work = getTitlesInUpperCase
-    .map((title, index) => {
-      const end = getTitlesInUpperCase[index + 1]
-        ? getTitlesInUpperCase[index + 1]
-        : 'FINIS';
-
-      return {
-        id: index + 1,
-        title,
-        content: works.slice(works.indexOf(title), works.lastIndexOf(end)),
-      };
-    })
-    .find((title) => title.id === Number(id));
+  const work = getWorks({ lines }).find((title) => title.id === Number(id));
 
   if (!work) {
     return {

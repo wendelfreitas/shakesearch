@@ -2,8 +2,15 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { getContentsSanitized } from 'utils/helpers/get-contents-sanitized';
 import { getTitles } from 'utils/helpers/get-titles';
 import { getSonnets } from 'utils/helpers/get-sonnets';
-import { Document } from 'flexsearch';
+import { Document, SimpleDocumentSearchResultSetUnit } from 'flexsearch';
 import data from 'utils/database';
+import { Character, getCharacters } from 'utils/helpers/get-characters';
+
+type SearchCharactersProps = {
+  document: Document<unknown, false>;
+  characters: Character[];
+  term: string;
+};
 
 type SearchTitlesProps = {
   document: Document<unknown, false>;
@@ -22,6 +29,35 @@ type SearchSonnetsProps = {
     content: string;
   }>;
   term: string;
+};
+
+const searchCharacters = ({
+  document,
+  characters: data,
+  term,
+}: SearchCharactersProps) => {
+  const characters = data.map((sonnet) => ({
+    ...sonnet,
+    type: 'characters',
+  }));
+
+  characters.forEach((character) => {
+    document.add(character);
+  });
+
+  const results = document.search(String(term), 200);
+
+  if (results.length) {
+    const getResults = results.map(
+      (result: SimpleDocumentSearchResultSetUnit) => result.result
+    );
+
+    const data = Array.from(new Set(getResults.flat()));
+
+    return characters.filter((_, index) => data.includes(index));
+  }
+
+  return [];
 };
 
 const searchTitles = ({ document, titles: data, term }: SearchTitlesProps) => {
@@ -55,8 +91,8 @@ const searchSonnets = ({
     type: 'sonnets',
   }));
 
-  sonnets.forEach((sonnets) => {
-    document.add(sonnets);
+  sonnets.forEach((sonnet) => {
+    document.add(sonnet);
   });
 
   const results = document.search(String(term), 200);
@@ -75,6 +111,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   try {
     const lines = getContentsSanitized({ data });
+    const characters = getCharacters({ lines });
     const titles = getTitles({ lines: lines.filter(Boolean) });
     const sonnets = getSonnets({ lines: lines.filter(Boolean) });
 
@@ -82,8 +119,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       tokenize: 'forward',
       document: {
         id: 'index',
-        index: ['type', 'title'],
+        index: ['type', 'title', 'name'],
       },
+    });
+
+    const getCharactersBySearch = searchCharacters({
+      document,
+      characters,
+      term: String(term),
     });
 
     const getTitlesBySearch = searchTitles({
@@ -99,9 +142,13 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     });
 
     return res.status(200).json({
+      characters: getCharactersBySearch,
       titles: getTitlesBySearch,
       sonnets: getSonnetsBySearch,
-      results: getTitlesBySearch.length + getSonnetsBySearch.length,
+      results:
+        getCharactersBySearch.length +
+        getTitlesBySearch.length +
+        getSonnetsBySearch.length,
     });
   } catch (err) {
     res.status(400).json({ error: 'Something went wrong' });
