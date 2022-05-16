@@ -48,7 +48,7 @@ export const SearchInput = () => {
             onChange={handleSearchOnChange}
           />
         </div>
-        {!isSearchEmpty && <Close size={25} />}
+        {!isSearchEmpty && <Close size={25} onClick={() => setValue('')} />}
       </S.InputContainer>
       <hr />
 
@@ -86,7 +86,7 @@ export const SearchInput = () => {
                 <ResultItem
                   {...sonnet}
                   key={index}
-                  subtitle={`${sonnet.content.substring(0, 70)} ...`}
+                  subtitle={sonnet.content}
                   onClick={() => router.push(`/sonnets/${sonnet.id}`)}
                 />
               ))}

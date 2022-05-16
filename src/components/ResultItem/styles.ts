@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import media from 'styled-media-query';
 
 export const Item = styled.li`
   display: flex;
@@ -30,12 +31,28 @@ export const Item = styled.li`
     font-size: ${theme.font.sizes.small};
   `}
 
-  > div {
+  div:first-child {
     display: flex;
     align-items: center;
+    width: 90%;
 
     > div {
+      width: 100%;
+
+      ${media.lessThan('medium')`
+        width: 80%;
+      `}
+
       margin-left: 1rem;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
 `;
