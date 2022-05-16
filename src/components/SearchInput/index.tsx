@@ -100,6 +100,21 @@ export const SearchInput = () => {
               ))}
             </S.ItemGroup>
           )}
+
+          {!!data.characters.length && (
+            <S.ItemGroup>
+              <p>Characters</p>
+              {data.characters.map((character, index) => (
+                <ResultItem
+                  key={index}
+                  title={character.name}
+                  subtitle={`Appears in "${character.title}"`}
+                  type="characters"
+                  onClick={() => router.push(`/titles/${character.titleId}`)}
+                />
+              ))}
+            </S.ItemGroup>
+          )}
         </S.ResultsContainer>
       )}
 

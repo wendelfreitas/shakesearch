@@ -1,6 +1,7 @@
 import { KeyboardReturn } from '@styled-icons/material/KeyboardReturn';
 import { KeyboardEvent } from 'react';
 import { FilePaper2 } from '@styled-icons/remix-line/FilePaper2';
+import { UserPin } from '@styled-icons/boxicons-regular/UserPin';
 import { Mask } from '@styled-icons/entypo/Mask';
 import { KEYS } from '../../utils/constants';
 import * as S from './styles';
@@ -12,7 +13,7 @@ export const ResultItemLoading = () => (
 type ResultItemProps = {
   title: string;
   subtitle?: string;
-  type: 'sonnets' | 'titles';
+  type: 'sonnets' | 'titles' | 'characters';
   onClick?: () => void;
 };
 
@@ -31,6 +32,7 @@ export const ResultItem = ({
   const icons = {
     sonnets: <FilePaper2 size={25} />,
     titles: <Mask size={25} />,
+    characters: <UserPin size={30} />,
   };
 
   return (
