@@ -62,7 +62,20 @@ ComponentName
 
 <p align="center">
   You can check this result,
+<<<<<<< HEAD
   <a href="https://gtmetrix.com/reports/shakesearch.vercel.app/RH8KcZ31/" target="__blank">here<a/>.
 </p>
 
 Then, I started refining the project, adding documentation, improving accessibility, performance, SEO, and adding some tests with Jest.
+=======
+  <a href="https://gtmetrix.com/reports/shakesearch.vercel.app/RH8KcZ31/" target="__blank">here</a>.
+</p>
+
+<br/>
+
+I created this project like I create my personal projects. So, I add some settings in GitHub, like `CI/CD`, `branch protections`, and `Release Tags`. Also, I used vercel to deploy and create previews for this project.
+
+<br/>
+
+<h2 align="center">Thanks for Read :rocket:</h2>
+>>>>>>> d53ae161a80677b6be1777338a0d665399ac68d0
