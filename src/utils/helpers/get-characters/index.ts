@@ -44,20 +44,6 @@ export const getCharacters = ({ lines }: GetCharactersProps) => {
     characters = [...characters, ...personas];
   });
 
-  //   const characters = work?.content
-  //   .map((line) => (line ? line : 'null'))
-  //   .splice(work?.content.indexOf('Dramatis Personæ') + 2);
-
-  // console.log(
-  //   characters?.splice(0, characters.indexOf('null')).map((character) =>
-  //     character
-  //       .toLowerCase()
-  //       .split(' ')
-  //       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-  //       .join(' ')
-  //   )
-  // );
-
   return characters.map((character, index) => ({
     ...character,
     index,

@@ -2,7 +2,7 @@
   <br>
   <img src="https://i.imgur.com/weGyiLq.png" alt="Shakesearch" height="200" width="200">
   <br><br>
-  Changes & Priorization
+  Changes & Prioritization
 </h1>
 
 ## Observations
@@ -18,7 +18,7 @@ So before I start to explain my changes and prioritization, I have a couple of o
 <br/>
 <br/>
 
-## Priorization
+## Prioritization
 
 The items below are ordered by priority
 
@@ -29,6 +29,18 @@ The items below are ordered by priority
 - So, I started to create components and pages based on some layouts I found to inspire myself. The firts was (`<SearchInput/>`, `<Logo/>`, and `<Home/>`).
 
 - Then, I started refining the project.
+
+<br/>
+<br/>
+
+## What I would prioritize?
+
+If I work on this project without a deadline
+
+- I would start spending more time on a way to organize better the data.
+- It would isolate all the manipulation part of the file in another project, or if it was a monorepo, in another package.
+
+For the rest, I think I managed to work very well with the time I had.
 
 <br/>
 <br/>
@@ -62,12 +74,6 @@ ComponentName
 
 <p align="center">
   You can check this result,
-<<<<<<< HEAD
-  <a href="https://gtmetrix.com/reports/shakesearch.vercel.app/RH8KcZ31/" target="__blank">here<a/>.
-</p>
-
-Then, I started refining the project, adding documentation, improving accessibility, performance, SEO, and adding some tests with Jest.
-=======
   <a href="https://gtmetrix.com/reports/shakesearch.vercel.app/RH8KcZ31/" target="__blank">here</a>.
 </p>
 
@@ -78,4 +84,3 @@ I created this project like I create my personal projects. So, I add some settin
 <br/>
 
 <h2 align="center">Thanks for Read :rocket:</h2>
->>>>>>> d53ae161a80677b6be1777338a0d665399ac68d0
