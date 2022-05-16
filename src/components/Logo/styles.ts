@@ -1,5 +1,6 @@
 import styled, { css, DefaultTheme } from 'styled-components';
 import { LogoProps } from '.';
+import media from 'styled-media-query';
 
 const modifiers = {
   vertical: (theme: DefaultTheme) => css`
@@ -11,6 +12,14 @@ const modifiers = {
       width: 20rem;
       margin-bottom: 1.5rem;
     }
+
+    ${media.lessThan('medium')`
+      img {
+        width: 15rem;
+        height: 15rem;
+        margin-bottom: 1rem;
+      }
+    `}
 
     h1 {
       font-size: ${theme.font.sizes.huge};
@@ -31,6 +40,14 @@ const modifiers = {
         cursor: pointer;
       }
     }
+
+    ${media.lessThan('medium')`
+      img {
+        width: 7.5rem;
+        height: 7.5rem;
+        margin-bottom: 1rem;
+      }
+    `}
 
     h1 {
       font-size: ${theme.font.sizes.large};

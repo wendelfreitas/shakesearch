@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import media from 'styled-media-query';
 
 export const Container = styled.div`
   padding: 0 2rem;
@@ -22,6 +23,10 @@ export const Wrapper = styled.div`
   > div {
     width: 75rem;
     white-space: pre-line;
+
+    ${media.lessThan('medium')`
+      width: 100%;
+    `}
 
     margin: 3.5rem 0;
 

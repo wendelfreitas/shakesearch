@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import media from 'styled-media-query';
 
 export const Container = styled.div`
   width: 100%;
@@ -38,6 +39,9 @@ export const InputContainer = styled.div`
     ${({ theme }) => css`
       font-size: ${theme.font.sizes.large};
       font-family: 'Poppins';
+      ${media.lessThan('medium')`
+        font-size: ${theme.font.sizes.medium};
+      `}
 
       &::placeholder {
         font-weight: 300;
@@ -57,6 +61,10 @@ export const ControlsContainer = styled.div`
   align-items: center;
   ${({ theme }) => css`
     font-size: ${theme.font.sizes.small};
+  `}
+
+  ${media.lessThan('medium')`
+    display: none;
   `}
 `;
 
