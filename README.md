@@ -43,9 +43,24 @@ $ yarn install or yarn
 # Run linters using package script
 $ yarn lint
 
-# You will get this
+# You probably will see this
 ✔ No ESLint warnings or errors
 ✨  Done in 3.97s.
+```
+
+<h2>Want to check typescript warnings and errors?</h2>
+
+```bash
+# Install Dependencies if you dont did this already
+$ yarn install or yarn
+
+# Run linters using package script
+$ yarn typecheck
+
+# You probably will see this
+yarn run v1.22.11
+$ tsc --project tsconfig.json --noEmit
+✨  Done in 2.23s.
 ```
 
 <h2>You want to check the code coverage?</h2>
@@ -57,12 +72,11 @@ $ yarn install or yarn
 # Run Jest using package script
 $ yarn test
 
-# You probably will get this
-
+# You probably will see this
 --------------------------------------|---------|----------|---------|---------|-------------------
-File                                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Lines
+File                                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
 --------------------------------------|---------|----------|---------|---------|-------------------
-All files                             |   96.46 |     80.3 |   91.46 |   96.41 |
+All files                             |   95.83 |    78.57 |   90.21 |   95.73 |
  components/Footer                    |     100 |      100 |     100 |     100 |
   index.tsx                           |     100 |      100 |     100 |     100 |
   styles.ts                           |     100 |      100 |     100 |     100 |
@@ -75,8 +89,8 @@ All files                             |   96.46 |     80.3 |   91.46 |   96.41 |
  components/ResultItem                |     100 |      100 |     100 |     100 |
   index.tsx                           |     100 |      100 |     100 |     100 |
   styles.ts                           |     100 |      100 |     100 |     100 |
- components/SearchInput               |   78.78 |       48 |   56.25 |   78.78 |
-  index.tsx                           |   73.68 |       48 |   44.44 |   73.68 | 57-98
+ components/SearchInput               |   74.28 |    44.44 |      50 |   74.28 |
+  index.tsx                           |   66.66 |    44.44 |   36.36 |   66.66 | 57-113
   styles.ts                           |   85.71 |      100 |   71.42 |   85.71 | 100,115
  hooks/use-key-down                   |     100 |      100 |     100 |     100 |
   index.tsx                           |     100 |      100 |     100 |     100 |
@@ -108,11 +122,15 @@ All files                             |   96.46 |     80.3 |   91.46 |   96.41 |
  utils                                |     100 |      100 |     100 |     100 |
   constants.ts                        |     100 |      100 |     100 |     100 |
   database.ts                         |       0 |        0 |       0 |       0 |
+ utils/helpers/get-characters         |     100 |      100 |     100 |     100 |
+  index.ts                            |     100 |      100 |     100 |     100 |
  utils/helpers/get-contents-sanitized |     100 |      100 |     100 |     100 |
   index.ts                            |     100 |      100 |     100 |     100 |
  utils/helpers/get-sonnets            |     100 |      100 |     100 |     100 |
   index.ts                            |     100 |      100 |     100 |     100 |
  utils/helpers/get-titles             |     100 |      100 |     100 |     100 |
+  index.ts                            |     100 |      100 |     100 |     100 |
+ utils/helpers/get-works              |     100 |      100 |     100 |     100 |
   index.ts                            |     100 |      100 |     100 |     100 |
  utils/helpers/paginate               |     100 |      100 |     100 |     100 |
   index.ts                            |     100 |      100 |     100 |     100 |
@@ -120,12 +138,12 @@ All files                             |   96.46 |     80.3 |   91.46 |   96.41 |
   helper.tsx                          |     100 |      100 |     100 |     100 |
 --------------------------------------|---------|----------|---------|---------|-------------------
 
-Test Suites: 21 passed, 21 total
-Tests:       64 passed, 64 total
+Test Suites: 23 passed, 23 total
+Tests:       66 passed, 66 total
 Snapshots:   0 total
-Time:        3.512 s
+Time:        3.818 s
 Ran all test suites.
-✨  Done in 5.15s.
+✨  Done in 4.81s.
 ```
 
 ## :handshake: **Contributing**

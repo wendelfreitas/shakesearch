@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import debounce from 'lodash.debounce';
 import useFetch from 'use-http';
+import { Character } from '../../utils/helpers/get-characters';
 
 type UseSearchResponse = {
   isLoading: boolean;
@@ -17,6 +18,7 @@ type UseSearchResponse = {
       content: string;
       type: 'sonnets';
     }>;
+    characters: Character[];
     results: number;
   };
 };
