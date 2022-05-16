@@ -1,6 +1,5 @@
 import { screen } from '@testing-library/react';
 import FourOhFour from '.';
-import Page404 from '../../pages/404';
 import { useRouter } from 'next/router';
 import { renderWithTheme } from 'utils/tests/helper';
 import userEvent from '@testing-library/user-event';
@@ -17,15 +16,8 @@ describe('<FourOhFour />', () => {
     expect(title).toBeInTheDocument();
   });
 
-  it('should render template 404 title', () => {
+  it('should render 404 page title', () => {
     renderWithTheme(<FourOhFour />);
-    const title = screen.getByText('404');
-
-    expect(title).toBeInTheDocument();
-  });
-
-  it('should render page 404 title', () => {
-    renderWithTheme(<Page404 />);
     const title = screen.getByText('404');
 
     expect(title).toBeInTheDocument();

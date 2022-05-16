@@ -5,7 +5,9 @@ import { Mask } from '@styled-icons/entypo/Mask';
 import { KEYS } from '../../utils/constants';
 import * as S from './styles';
 
-export const ResultItemLoading = () => <S.ItemLoading />;
+export const ResultItemLoading = () => (
+  <S.ItemLoading data-testid="loading-indicator" />
+);
 
 type ResultItemProps = {
   title: string;

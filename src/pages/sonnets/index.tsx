@@ -23,24 +23,18 @@ const SonnetsPage = ({ sonnets, pagination }: SonnetsPageProps) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const page = Number(query.page || 1);
-  try {
-    const lines = getContentsSanitized({ data });
-    const sonnets = getSonnets({ lines: lines.filter(Boolean) });
+  const lines = getContentsSanitized({ data });
+  const sonnets = getSonnets({ lines: lines.filter(Boolean) });
 
-    return {
-      props: {
-        sonnets: paginate(sonnets, 10, page),
-        pagination: {
-          current: page,
-          total: Math.ceil(sonnets.length / 10),
-        },
+  return {
+    props: {
+      sonnets: paginate(sonnets, 10, page),
+      pagination: {
+        current: page,
+        total: Math.ceil(sonnets.length / 10),
       },
-    };
-  } catch (error) {
-    return {
-      notFound: true,
-    };
-  }
+    },
+  };
 };
 
 export default SonnetsPage;

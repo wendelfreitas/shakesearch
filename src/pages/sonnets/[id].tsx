@@ -4,10 +4,6 @@ import data from 'utils/database';
 import { getContentsSanitized } from 'utils/helpers/get-contents-sanitized';
 import { getSonnets } from 'utils/helpers/get-sonnets';
 
-type SonnetQueryParam = {
-  id: string;
-};
-
 export type SonnetPageProps = {
   sonnet: {
     id: number;
@@ -20,10 +16,9 @@ const SonnetPage = ({ sonnet }: SonnetPageProps) => {
   return <Sonnet sonnet={sonnet} />;
 };
 
-export const getServerSideProps: GetServerSideProps<
-  { [key: string]: unknown },
-  SonnetQueryParam
-> = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps<{
+  [key: string]: unknown;
+}> = async ({ params }) => {
   const { id } = params!;
 
   if (!id) {
@@ -32,28 +27,22 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
 
-  try {
-    const lines = getContentsSanitized({ data });
-    const sonnets = getSonnets({ lines: lines.filter(Boolean) });
+  const lines = getContentsSanitized({ data });
+  const sonnets = getSonnets({ lines: lines.filter(Boolean) });
 
-    const sonnet = sonnets.find((sonnet) => sonnet.id === Number(id));
+  const sonnet = sonnets.find((sonnet) => sonnet.id === Number(id));
 
-    if (!sonnet) {
-      return {
-        notFound: true,
-      };
-    }
-
-    return {
-      props: {
-        sonnet,
-      },
-    };
-  } catch (error) {
+  if (!sonnet) {
     return {
       notFound: true,
     };
   }
+
+  return {
+    props: {
+      sonnet,
+    },
+  };
 };
 
 export default SonnetPage;
