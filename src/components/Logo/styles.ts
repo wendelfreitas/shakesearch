@@ -22,12 +22,21 @@ const modifiers = {
     justify-content: space-between;
     flex-direction: row;
 
+    margin-bottom: 5rem;
+
     img {
-      width: 10%;
+      width: 10rem;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     h1 {
       font-size: ${theme.font.sizes.large};
+      &:hover {
+        cursor: pointer;
+      }
     }
   `,
 };
