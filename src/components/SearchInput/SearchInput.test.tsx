@@ -1,10 +1,9 @@
-import { renderHook, act } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react-hooks';
 import { screen } from '@testing-library/react';
 import { SearchInput } from '.';
 import { renderWithTheme } from 'utils/tests/helper';
 import { useKeyDown } from 'hooks/use-key-down';
 import userEvent from '@testing-library/user-event';
-import { useSearch } from 'hooks/use-search';
 
 /**
  * Remove this workaround when @test-library/react-hooks renderHook functions update to React 18.
@@ -81,29 +80,7 @@ describe('<SearchInput />', () => {
     expect(input).toBeInTheDocument();
   });
 
-  it('should render loading wrapper', async () => {
-    const { result, waitFor } = renderHook(() => useSearch());
-    renderWithTheme(<SearchInput />);
-
-    const placeholder = screen.getByPlaceholderText(
-      'Search for sonnets, characters, titles and more...'
-    );
-
-    userEvent.type(placeholder, 'hamlet');
-
-    act(() => {
-      result.current.search('term');
-    });
-
-    await waitFor(() => result.current.isLoading);
-
-    const loading = screen.getByTestId('loading-wrapper');
-
-    expect(loading).toBeInTheDocument();
-  });
-
-  it('should render loading wrapper', async () => {
-    // const { result, waitFor } = renderHook(() => useSearch());
+  it('should render the tutorial content', async () => {
     renderWithTheme(<SearchInput />);
 
     const container = screen.getByText('SHIFT + TAB');

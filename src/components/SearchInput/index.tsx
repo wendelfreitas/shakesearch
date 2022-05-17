@@ -2,18 +2,18 @@ import { ChangeEvent, useState } from 'react';
 import { Search } from '@styled-icons/ionicons-outline/Search';
 import { Close } from '@styled-icons/evil/Close';
 
-import { ResultItem, ResultItemLoading } from '../../components/ResultItem';
+import { ResultItem } from '../../components/ResultItem';
 import { useKeyDown } from '../../hooks/use-key-down';
 import { useSearch } from '../../hooks/use-search';
 import * as S from './styles';
 import { useRouter } from 'next/router';
 
 export const SearchInput = () => {
-  const { isLoading, search, data } = useSearch();
+  const { search, data } = useSearch();
   const router = useRouter();
 
   const [value, setValue] = useState('');
-  const isSearchEmpty = value.length < 3;
+  const isSearchEmpty = value.length < 1;
 
   useKeyDown({
     onEsc: () => {
@@ -28,15 +28,6 @@ export const SearchInput = () => {
     search(query);
   };
 
-  const IsLoading = () =>
-    isLoading ? (
-      <>
-        <ResultItemLoading />
-        <br />
-        <ResultItemLoading />
-      </>
-    ) : null;
-
   return (
     <S.Container>
       <S.InputContainer>
@@ -45,6 +36,7 @@ export const SearchInput = () => {
           <input
             name="query"
             data-testid="input"
+            autoComplete="off"
             value={value}
             placeholder="Search for sonnets, characters, titles and more..."
             onChange={handleSearchOnChange}
@@ -60,13 +52,7 @@ export const SearchInput = () => {
       </S.InputContainer>
       <hr />
 
-      {!isSearchEmpty && isLoading && (
-        <S.ResultsContainer data-testid="loading-wrapper">
-          <IsLoading />
-        </S.ResultsContainer>
-      )}
-
-      {!isSearchEmpty && !isLoading && data && data.results > 0 && (
+      {!isSearchEmpty && data && data.results > 0 && (
         <S.ResultsContainer>
           {!!data.titles.length && (
             <S.ItemGroup>
@@ -74,7 +60,8 @@ export const SearchInput = () => {
               {data.titles.map((item, index) => (
                 <ResultItem
                   key={index}
-                  {...item}
+                  title={item.title!}
+                  type="titles"
                   onClick={() =>
                     router.push(
                       item.title === 'The Sonnets'
@@ -92,9 +79,10 @@ export const SearchInput = () => {
               <p>Sonnets</p>
               {data.sonnets.map((sonnet, index) => (
                 <ResultItem
-                  {...sonnet}
                   key={index}
-                  subtitle={sonnet.content}
+                  title={sonnet.title!}
+                  subtitle={sonnet.description!}
+                  type="sonnets"
                   onClick={() => router.push(`/sonnets/${sonnet.id}`)}
                 />
               ))}
@@ -107,7 +95,7 @@ export const SearchInput = () => {
               {data.characters.map((character, index) => (
                 <ResultItem
                   key={index}
-                  title={character.name}
+                  title={character.name!}
                   subtitle={`Appears in "${character.title}"`}
                   type="characters"
                   onClick={() => router.push(`/titles/${character.titleId}`)}
@@ -115,10 +103,29 @@ export const SearchInput = () => {
               ))}
             </S.ItemGroup>
           )}
+
+          {!!data.quotes.length && (
+            <S.ItemGroup>
+              <p>Quotes</p>
+              {data.quotes.map((quote, index) => (
+                <ResultItem
+                  key={index}
+                  title={quote.title!}
+                  subtitle={`Those worlds: (${value
+                    .trim()
+                    .split(' ')
+                    .map((word) => `"${word}"`)
+                    .join(', ')}) was found in this content.`}
+                  type="characters"
+                  onClick={() => router.push(`/titles/${quote.id}`)}
+                />
+              ))}
+            </S.ItemGroup>
+          )}
         </S.ResultsContainer>
       )}
 
-      {!isSearchEmpty && !isLoading && data && data.results === 0 && (
+      {!isSearchEmpty && data && data.results === 0 && (
         <S.ResultsContainer>
           <S.NotFound>
             <i>Find, or not find, that is the question.</i>
