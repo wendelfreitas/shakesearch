@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react-hooks';
 import { useSearch } from '.';
 
 /**
@@ -28,34 +28,12 @@ describe('useSearch', () => {
 
     await waitFor(() => !!result.current);
 
-    expect(result.current.isLoading).toBeFalsy();
-
-    act(() => {
-      result.current.search('term');
+    expect(result.current.data).toEqual({
+      characters: [],
+      quotes: [],
+      results: 0,
+      sonnets: [],
+      titles: [],
     });
-
-    expect(result.current.isLoading).toBeTruthy();
-  });
-
-  it('should call set loading to false when finish request', async () => {
-    const { result, waitForNextUpdate } = renderHook(() => useSearch());
-
-    act(() => {
-      result.current.search('term');
-    });
-
-    await waitForNextUpdate();
-
-    expect(result.current.isLoading).toBeFalsy();
-  });
-
-  it('should not call api when query string length is less than three', async () => {
-    const { result } = renderHook(() => useSearch());
-
-    act(() => {
-      result.current.search('t3');
-    });
-
-    expect(result.current.isLoading).toBeFalsy();
   });
 });

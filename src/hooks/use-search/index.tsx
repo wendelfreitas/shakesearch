@@ -2,51 +2,75 @@ import { useState, useCallback } from 'react';
 import debounce from 'lodash.debounce';
 import useFetch from 'use-http';
 import { Character } from '../../utils/helpers/get-characters';
+import { getResults } from 'utils/helpers/get-results';
+
+type Data = {
+  titles: Array<{
+    id: string;
+    title: string;
+    type: 'titles';
+  }>;
+  sonnets: Array<{
+    id: string;
+    title: string;
+    content: string;
+    type: 'sonnets';
+  }>;
+  characters: Character[];
+  quotes: Array<{
+    id: string;
+    title: string;
+    author: string;
+    type: 'quotes';
+  }>;
+  results: number;
+};
+
+type Row = {
+  id: number;
+  index: number;
+  type: string;
+  title?: string;
+  titleId?: string;
+  description?: string;
+  name?: string;
+  content?: string;
+  author?: string;
+};
 
 type UseSearchResponse = {
-  isLoading: boolean;
   search: (query: string) => void;
   data: {
-    titles: Array<{
-      id: string;
-      title: string;
-      type: 'titles';
-    }>;
-    sonnets: Array<{
-      id: string;
-      title: string;
-      content: string;
-      type: 'sonnets';
-    }>;
-    characters: Character[];
+    characters: Row[];
+    quotes: Row[];
+    titles: Row[];
+    sonnets: Row[];
     results: number;
   };
 };
 
 export const useSearch = (): UseSearchResponse => {
-  const [isLoading, setIsLoading] = useState(false);
-  const { get, data } = useFetch('', {
-    cache: 'no-cache',
+  const [data, setData] = useState<{
+    characters: Row[];
+    quotes: Row[];
+    titles: Row[];
+    sonnets: Row[];
+    results: number;
+  }>({
+    titles: [],
+    sonnets: [],
+    quotes: [],
+    characters: [],
+    results: 0,
   });
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handleSearch = useCallback(
-    debounce(async (query) => {
-      await get(`api/search?term=${query}`);
-      setIsLoading(false);
-    }, 600),
-    []
-  );
-
   const search = (query: string) => {
-    if (query.length >= 3) {
-      setIsLoading(true);
-      handleSearch(query);
-    }
+    const data = getResults(query);
+
+    setData(data);
   };
 
   return {
-    isLoading,
     search,
     data,
   };
