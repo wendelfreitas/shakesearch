@@ -2,6 +2,7 @@ import { KeyboardReturn } from '@styled-icons/material/KeyboardReturn';
 import { KeyboardEvent } from 'react';
 import { FilePaper2 } from '@styled-icons/remix-line/FilePaper2';
 import { UserPin } from '@styled-icons/boxicons-regular/UserPin';
+import { TextWordCount } from '@styled-icons/fluentui-system-regular/TextWordCount';
 import { Mask } from '@styled-icons/entypo/Mask';
 import { KEYS } from '../../utils/constants';
 import * as S from './styles';
@@ -13,7 +14,7 @@ export const ResultItemLoading = () => (
 type ResultItemProps = {
   title: string;
   subtitle?: string;
-  type: 'sonnets' | 'titles' | 'characters';
+  type: 'sonnets' | 'titles' | 'characters' | 'quotes';
   onClick?: () => void;
 };
 
@@ -33,6 +34,7 @@ export const ResultItem = ({
     sonnets: <FilePaper2 size={25} />,
     titles: <Mask size={25} />,
     characters: <UserPin size={30} />,
+    quotes: <TextWordCount size={30} />,
   };
 
   return (

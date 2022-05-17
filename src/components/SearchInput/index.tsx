@@ -116,7 +116,7 @@ export const SearchInput = () => {
                     .split(' ')
                     .map((word) => `"${word}"`)
                     .join(', ')}) was found in this content.`}
-                  type="characters"
+                  type="quotes"
                   onClick={() => router.push(`/titles/${quote.id}`)}
                 />
               ))}
